@@ -103,3 +103,324 @@
 .org-chart-collapse-btn:hover+.org-chart-collapse-symbol {
   fill: var(--org-chart-selected-color);
 }
+
+/* --- Card Templates --- */
+
+/* Common */
+.org-card-name {
+  font-weight: 600;
+  font-size: 14px;
+  margin-bottom: 2px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.org-card-title {
+  font-size: 12px;
+  color: #666;
+}
+
+.org-card-menu-trigger {
+  cursor: pointer;
+  font-weight: bold;
+  padding: 0 4px;
+  opacity: 0.6;
+}
+
+.org-card-menu-trigger:hover {
+  opacity: 1;
+  background: rgba(0, 0, 0, 0.05);
+  border-radius: 4px;
+}
+
+.org-card-menu-trigger.abs-right {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+}
+
+
+/* Template 1: Group Card (Dark/Bold) */
+.org-card-group {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #2b324d 0%, #1d2133 100%);
+  color: white;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  border: 1px solid #3d4666;
+}
+
+.org-card-group-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 10px;
+  background: rgba(255, 255, 255, 0.05);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.org-card-group-icon {
+  font-size: 16px;
+  margin-right: 6px;
+}
+
+.org-card-group-title {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: rgba(255, 255, 255, 0.6);
+  flex: 1;
+}
+
+.org-card-group-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0 10px;
+}
+
+.org-card-group .org-card-name {
+  font-size: 16px;
+  margin-bottom: 4px;
+}
+
+.org-card-group .org-card-title {
+  color: #a0a8cc;
+}
+
+.org-card-group .org-card-menu-trigger {
+  color: white;
+}
+
+.org-card-group-footer {
+  padding: 6px 10px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 10px;
+  color: #7a86b8;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 0 0 8px 8px;
+}
+
+/* Template 2: Company Card (Formal/Clean) */
+.org-card-company {
+  width: 100%;
+  height: 100%;
+  background: white;
+  border-left: 4px solid #1890ff;
+  border-radius: 4px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+}
+
+.org-card-company-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 8px 10px 0;
+}
+
+.org-card-company-logo {
+  width: 24px;
+  height: 24px;
+  background: #1890ff;
+  color: white;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 12px;
+}
+
+.org-card-company-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 10px;
+}
+
+.org-card-company-status {
+  font-size: 10px;
+  color: #52c41a;
+  padding: 4px 10px;
+  background: #f6ffed;
+  border-top: 1px solid #e8e8e8;
+  text-align: right;
+}
+
+/* Template 3: Department Card (Simple/Card) */
+.org-card-dept {
+  width: 100%;
+  height: 100%;
+  background: white;
+  border-radius: 6px;
+  border: 1px solid #e0e0e0;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+}
+
+.org-card-dept-accent {
+  height: 4px;
+  background: linear-gradient(90deg, #52c41a, #1890ff);
+  width: 100%;
+}
+
+.org-card-dept-body {
+  flex: 1;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  /* align-items: center; Remove center align for left-aligned text looks better here */
+}
+
+.org-card-dept-meta {
+  margin-top: 8px;
+  font-size: 10px;
+  color: #999;
+  padding-top: 4px;
+  border-top: 1px dashed #eee;
+}
+
+/* --- 5-Core Center Templates --- */
+
+/* Base Logic for Center Cards */
+.org-card-center {
+  width: 100%;
+  height: 100%;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background: white;
+  transition: all 0.2s;
+  border: 1px solid transparent;
+}
+
+.org-card-center-header {
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 10px;
+  color: white;
+  font-size: 11px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.org-card-center-icon {
+  font-size: 14px;
+  margin-right: 4px;
+}
+
+.org-card-center-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 10px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.8) 0%, #ffffff 100%);
+}
+
+.org-card-center-name {
+  font-weight: 700;
+  font-size: 15px;
+  color: #333;
+  margin-bottom: 2px;
+}
+
+.org-card-center-role {
+  font-size: 11px;
+  color: #666;
+  padding: 2px 6px;
+  border-radius: 10px;
+  background: #f0f0f0;
+  width: fit-content;
+}
+
+/* 1. CEO Style (Gold/Purple) */
+.org-card-ceo {
+  border-color: #ffd700;
+}
+
+.org-card-ceo .org-card-center-header {
+  background: linear-gradient(135deg, #FFD700 0%, #FDB931 100%);
+  color: #4a3e00;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+.org-card-ceo .org-card-center-body {
+  background: #fffdf5;
+}
+
+/* 2. R&D Center (Tech Blue) */
+.org-card-rnd {
+  border-color: #1890ff;
+}
+
+.org-card-rnd .org-card-center-header {
+  background: linear-gradient(135deg, #1890ff 0%, #096dd9 100%);
+}
+
+.org-card-rnd .org-card-center-role {
+  color: #096dd9;
+  background: #e6f7ff;
+}
+
+/* 3. Admin Center (Teal/Calm) */
+.org-card-admin {
+  border-color: #13c2c2;
+}
+
+.org-card-admin .org-card-center-header {
+  background: linear-gradient(135deg, #13c2c2 0%, #08979c 100%);
+}
+
+.org-card-admin .org-card-center-role {
+  color: #08979c;
+  background: #e6fffb;
+}
+
+/* 4. Sales Center (Active Orange) */
+.org-card-sales {
+  border-color: #fa8c16;
+}
+
+.org-card-sales .org-card-center-header {
+  background: linear-gradient(135deg, #fa8c16 0%, #d46b08 100%);
+}
+
+.org-card-sales .org-card-center-role {
+  color: #d46b08;
+  background: #fff7e6;
+}
+
+/* 5. Product Center (Fresh Green) */
+.org-card-product {
+  border-color: #52c41a;
+}
+
+.org-card-product .org-card-center-header {
+  background: linear-gradient(135deg, #52c41a 0%, #389e0d 100%);
+}
+
+.org-card-product .org-card-center-role {
+  color: #389e0d;
+  background: #f6ffed;
+}
