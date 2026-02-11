@@ -3,17 +3,33 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "main": "./dist/org-chart.umd.js",
+  "module": "./dist/org-chart.es.js",
+  "types": "./dist/plugin/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/org-chart.es.js",
+      "require": "./dist/org-chart.umd.js",
+      "types": "./dist/plugin/index.d.ts"
+    },
+    "./style.css": "./dist/structure-chart.css"
+  },
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build",
+    "build": "vite build",
+    "build:types": "tsc --project tsconfig.json --emitDeclarationOnly --outDir dist",
     "preview": "vite preview"
   },
   "devDependencies": {
+    "@types/d3": "^7.4.3",
+    "@types/node": "^20.0.0",
     "typescript": "~5.9.3",
     "vite": "^7.2.4"
   },
   "dependencies": {
-    "@types/d3": "^7.4.3",
+    "d3": "^7.9.0"
+  },
+  "peerDependencies": {
     "d3": "^7.9.0"
   }
 }
