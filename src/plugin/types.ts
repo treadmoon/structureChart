@@ -63,4 +63,11 @@ export interface OrgChartOptions {
      * Callback when structure changes (reorder/reparent)
      */
     onDataChange?: (data: OrgChartNodeData[]) => void;
+
+    /**
+     * The depth to expand to on initial load.
+     * Use 0 for root only, 1 for root + immediate children, etc.
+     * Default is Infinity (expand all).
+     */
+    defaultExpandDepth?: number;
 }
