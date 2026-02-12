@@ -1,7 +1,7 @@
 import './style.css'
-import { OrgChart } from '../plugin/OrgChart';
-import type { OrgChartNodeData } from '../plugin/types';
-import { renderDepartmentCard, renderCompanyCard, renderGroupCard, renderCenterCard } from '../plugin/templates';
+import { OrgChart } from '../../plugin/OrgChart';
+import type { OrgChartNodeData } from '../../plugin/types';
+import { renderDepartmentCard, renderCompanyCard, renderGroupCard, renderCenterCard } from '../../plugin/templates';
 
 interface WindowWithMenu extends Window {
   toggleNodeMenu?: (event: MouseEvent, nodeId: string) => void;
