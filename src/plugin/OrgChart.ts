@@ -18,6 +18,7 @@ export class OrgChart {
     private mode: 'view' | 'edit' = 'view';
     private zoomBehavior!: d3.ZoomBehavior<SVGSVGElement, unknown>;
     private selectedNodeId: string | null = null;
+    private isFirstRender = true;
 
     // Drag State
     private dropTarget: { type: 'reparent' | 'reorder', targetId: string, position?: 'before' | 'after' } | null = null;
@@ -90,11 +91,10 @@ export class OrgChart {
             }
 
             this.update(this.root);
-            // Only fit to screen if it's the very first render or explicit request?
-            // For now, let's assume we don't auto-fit on updates to preserve context.
-            // If it's the FIRST render ever (no children rendered yet), we might want to fit.
-            if (this.nodeGroup.selectAll('.org-chart-node').empty()) {
-                this.fitToScreen();
+
+            if (this.isFirstRender) {
+                this.resetView(false); // No animation for first render
+                this.isFirstRender = false;
             }
 
         } catch (e) {
@@ -529,6 +529,36 @@ export class OrgChart {
 
         this.svg.transition().duration(750)
             .call(this.zoomBehavior.transform, d3.zoomIdentity.translate(tx, ty).scale(scale));
+    }
+
+    public resetView(animate: boolean = true) {
+        if (!this.root) return;
+        const bounds = this.g.node()?.getBBox();
+        if (!bounds) return;
+
+        const parent = this.container.getBoundingClientRect();
+        const width = parent.width;
+
+        // Default scale 1, but fit width if content is wider than screen
+        let scale = 1;
+        if (bounds.width > width * 0.9) {
+            scale = (width * 0.9) / bounds.width;
+        }
+
+        // Center Root Node horizontally
+        const rootX = (this.root.x || 0); // Root node X relative to G
+        const tx = width / 2 - rootX * scale;
+
+        // Top margin 50px - RootY * scale
+        const rootY = (this.root.y || 0);
+        const ty = 50 - rootY * scale;
+
+        if (animate) {
+            this.svg.transition().duration(750)
+                .call(this.zoomBehavior.transform, d3.zoomIdentity.translate(tx, ty).scale(scale));
+        } else {
+            this.svg.call(this.zoomBehavior.transform, d3.zoomIdentity.translate(tx, ty).scale(scale));
+        }
     }
 
     public centerNode(nodeId: string) {

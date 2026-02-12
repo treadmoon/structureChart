@@ -1,6 +1,6 @@
 
 import React, { useState, useRef } from 'react';
-import { ReactOrgChart, OrgChartHandle } from './OrgChartContainer';
+import { ReactOrgChart, type OrgChartHandle } from './OrgChartContainer';
 import type { OrgChartNodeData } from '../../plugin/types';
 
 const INITIAL_DATA: OrgChartNodeData[] = [
@@ -40,8 +40,6 @@ export default function App() {
 
     return (
         <div style={{ padding: '20px', height: '100vh', display: 'flex', flexDirection: 'column', boxSizing: 'border-box' }}>
-            <h1>React 组织架构图示例</h1>
-
             <div style={{ marginBottom: '20px', display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
                 <button onClick={() => setIsEditMode(!isEditMode)} style={{ padding: '8px 16px', background: isEditMode ? '#ff4d4f' : '#1890ff', color: 'white', border: 'none', borderRadius: '4px', cursor: 'pointer' }}>
                     {isEditMode ? '关闭编辑模式' : '开启编辑模式 (支持拖拽)'}
