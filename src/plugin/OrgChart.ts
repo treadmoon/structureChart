@@ -539,11 +539,13 @@ export class OrgChart {
             this.update(this.root);
 
             const parent = this.container.getBoundingClientRect();
-            const t = d3.zoomTransform(this.svg.node()!);
-            const k = t.k;
+            // Important: we want to get the transform *after* expanding above if needed,
+            // but the root group might be in mid-transition.
+            const k = d3.zoomTransform(this.svg.node()!).k;
 
+            // Compute ideal translation to put node's center at container's center
             const tx = parent.width / 2 - node.x * k;
-            const ty = parent.height / 2 - node.y * k;
+            const ty = parent.height / 2 - (node.y + this.nodeHeight / 2) * k;
 
             this.svg.transition().duration(750)
                 .call(this.zoomBehavior.transform, d3.zoomIdentity.translate(tx, ty).scale(k));

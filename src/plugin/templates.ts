@@ -7,7 +7,7 @@ export function renderGroupCard(d: OrgChartNodeData): string {
             <div class="org-card-group-header">
                 <span class="org-card-group-icon">🏢</span>
                 <span class="org-card-group-title">GROUP</span>
-                <div class="org-card-menu-trigger" onclick="window.toggleNodeMenu(event, '${d.id}')">⋮</div>
+                <div class="org-card-menu-trigger" data-node-id="${d.id}">⋮</div>
             </div>
             <div class="org-card-group-body">
                 <div class="org-card-name">${d.name}</div>
@@ -27,7 +27,7 @@ export function renderCompanyCard(d: OrgChartNodeData): string {
         <div class="org-card-company">
             <div class="org-card-company-top">
                 <div class="org-card-company-logo">C</div>
-                <div class="org-card-menu-trigger" onclick="window.toggleNodeMenu(event, '${d.id}')">⋮</div>
+                <div class="org-card-menu-trigger" data-node-id="${d.id}">⋮</div>
             </div>
             <div class="org-card-company-info">
                 <div class="org-card-name">${d.name}</div>
@@ -46,7 +46,7 @@ export function renderDepartmentCard(d: OrgChartNodeData): string {
         <div class="org-card-dept">
             <div class="org-card-dept-accent"></div>
             <div class="org-card-dept-body">
-                 <div class="org-card-menu-trigger abs-right" onclick="window.toggleNodeMenu(event, '${d.id}')">⋮</div>
+                 <div class="org-card-menu-trigger abs-right" data-node-id="${d.id}">⋮</div>
                 <div class="org-card-name">${d.name}</div>
                 <div class="org-card-title">${d['title'] || 'Staff'}</div>
                 <div class="org-card-dept-meta">
@@ -79,7 +79,7 @@ export function renderCenterCard(d: OrgChartNodeData): string {
                     <span class="org-card-center-icon">${cfg.icon}</span>
                     <span>${cfg.label}</span>
                 </div>
-                 <div class="org-card-menu-trigger" onclick="window.toggleNodeMenu(event, '${d.id}')">⋮</div>
+                 <div class="org-card-menu-trigger" data-node-id="${d.id}">⋮</div>
             </div>
             <div class="org-card-center-body">
                 <div class="org-card-center-name">${d.name.split(' ')[0]}</div> 
