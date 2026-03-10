@@ -21,7 +21,7 @@
    ```
 3. **开放安全组端口**:
    - 在 AWS 控制台中，定位到该 EC2 所使用的**安全组**。
-   - 编辑入站规则（Inbound Rules），添加一条规则允许 `HTTP (TCP 端口 80)` 从 `0.0.0.0/0` 访问。
+   - 编辑入站规则（Inbound Rules），添加一条规则允许 `TCP 端口 5198` 从 `0.0.0.0/0` 访问。
 
 ## 2. 配置 GitHub Actions 的 Repository Secrets
 
@@ -42,7 +42,7 @@
 1. **首次推送代码**: 在您完成所有文件的提交并 push 到 GitHub 仓库的主分支 (`main`) 后，GitHub Actions 会自动触发第一次打包。
 2. **查看进度**: 您可以在仓库的 **Actions** 选项卡查看构建和推送到 Docker Hub 的记录状态。
 3. **部署至 EC2**: 流水线在构建镜像后将执行远程 SSH 命令，连接您的 EC2 拉取最新的 docker 镜像，并在 80 端口启动容器。
-4. **访问**: 当流水线出现绿色勾选（成功），您即可在浏览器中访问您的 `http://[EC2_PUBLIC_IP]` 查看在线版的 `structure-chart` 演示了！
+4. **访问**: 当流水线出现绿色勾选（成功），您即可在浏览器中访问您的 `http://[EC2_PUBLIC_IP]:5198` 查看在线版的 `structure-chart` 演示了！
 
 ## 手动调试命令 (如果在服务器本地测试)
 
@@ -52,5 +52,5 @@
 git clone <您的仓库地址>
 cd structure-chart
 docker build -t structure-chart .
-docker run -d -p 80:80 --name structure-chart structure-chart
+docker run -d -p 5198:80 --name structure-chart structure-chart
 ```
