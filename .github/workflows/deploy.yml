@@ -47,8 +47,8 @@ jobs:
             docker stop structure-chart || true
             docker rm structure-chart || true
             
-            # Run the new container mapping port 5198 to container port 80
-            docker run -d --name structure-chart -p 5198:80 --restart unless-stopped ${{ env.DOCKER_IMAGE }}
+            # Run the new container mapping port 51981 to container port 80
+            docker run -d --name structure-chart -p 51981:80 --restart unless-stopped ${{ env.DOCKER_IMAGE }}
             
             # Optionally clean up old images
             docker image prune -f
